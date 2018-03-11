@@ -1,15 +1,15 @@
 package blch.oleh.balychev.monkeyandfruits;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.*;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class Game extends com.badlogic.gdx.Game {
-	SpriteBatch mBatch;
-	BitmapFont mFont;
+import blch.oleh.balychev.monkeyandfruits.screen.FirstScreen;
+
+public class MyGame extends Game {
+	private SpriteBatch mBatch;
+	private BitmapFont mFont;
 	
 	@Override
 	public void create () {
@@ -28,5 +28,13 @@ public class Game extends com.badlogic.gdx.Game {
 		super.dispose();
 		mBatch.dispose();
 		mFont.dispose();
+	}
+
+	public SpriteBatch getBatch() {
+		return mBatch;
+	}
+
+	public BitmapFont getFont() {
+		return mFont;
 	}
 }

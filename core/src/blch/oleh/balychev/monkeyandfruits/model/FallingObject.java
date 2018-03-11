@@ -1,4 +1,4 @@
-package blch.oleh.balychev.monkeyandfruits;
+package blch.oleh.balychev.monkeyandfruits.model;
 
 import com.badlogic.gdx.math.Rectangle;
 
@@ -19,15 +19,10 @@ public class FallingObject {
         return mGameObject;
     }
 
-    public void setGameObject(GameObject gameObject) {
-        mGameObject = gameObject;
-    }
-
     public Rectangle getRectangle() {
         return mRectangle;
     }
 
-    public void setRectangle(Rectangle rectangle) {
-        mRectangle = rectangle;
-    }
+
+
 }

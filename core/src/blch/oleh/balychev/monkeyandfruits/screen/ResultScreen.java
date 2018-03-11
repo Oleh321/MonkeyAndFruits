@@ -1,25 +1,28 @@
-package blch.oleh.balychev.monkeyandfruits;
+package blch.oleh.balychev.monkeyandfruits.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
+import blch.oleh.balychev.monkeyandfruits.MyGame;
+import blch.oleh.balychev.monkeyandfruits.constant.Constants;
+
 /**
  * Created by User on 11.03.2018.
  */
 
-class EndScreen implements Screen {
+class ResultScreen implements Screen {
 
-    final Game mGame;
+    private final MyGame mGame;
     private int mScore;
-    OrthographicCamera mCamera;
+    private OrthographicCamera mCamera;
 
-    public EndScreen(final Game game, int score) {
+    public ResultScreen(final MyGame game, int score) {
         mGame = game;
         mScore = score;
         mCamera = new OrthographicCamera();
-        mCamera.setToOrtho(false, Size.WIDTH, Size.HEIGHT);
+        mCamera.setToOrtho(false, Constants.Size.WIDTH, Constants.Size.HEIGHT);
     }
 
 
@@ -35,12 +38,12 @@ class EndScreen implements Screen {
 
         mCamera.update();
 
-        mGame.mBatch.setProjectionMatrix(mCamera.combined);
+        mGame.getBatch().setProjectionMatrix(mCamera.combined);
 
-        mGame.mBatch.begin();
-        mGame.mFont.draw(mGame.mBatch, "Your score = " + mScore, Size.WIDTH/2 - 50, Size.HEIGHT/2 + 25);
-        mGame.mFont.draw(mGame.mBatch, "Tap to play again.", Size.WIDTH/2 - 50, Size.HEIGHT/2 - 25);
-        mGame.mBatch.end();
+        mGame.getBatch().begin();
+        mGame.getFont().draw(mGame.getBatch(), "Your score = " + mScore, Constants.Size.WIDTH/2 - 50, Constants.Size.HEIGHT/2 + 25);
+        mGame.getFont().draw(mGame.getBatch(), "Tap to play again.", Constants.Size.WIDTH/2 - 50, Constants.Size.HEIGHT/2 - 25);
+        mGame.getBatch().end();
 
         if (Gdx.input.isTouched()){
             mGame.setScreen(new GameScreen(mGame));

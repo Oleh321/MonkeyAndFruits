@@ -1,17 +1,12 @@
-package blch.oleh.balychev.monkeyandfruits;
+package blch.oleh.balychev.monkeyandfruits.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import java.awt.Font;
+import blch.oleh.balychev.monkeyandfruits.MyGame;
+import blch.oleh.balychev.monkeyandfruits.constant.Constants;
 
 /**
  * Created by User on 11.03.2018.
@@ -19,17 +14,16 @@ import java.awt.Font;
 
 public class FirstScreen implements Screen {
 
-    final Game mGame;
-    OrthographicCamera mCamera;
+    private final MyGame mGame;
+    private OrthographicCamera mCamera;
 
 
-    public FirstScreen( final Game game) {
+    public FirstScreen( final MyGame game) {
         mGame = game;
         mCamera = new OrthographicCamera();
-        mCamera.setToOrtho(false, Size.WIDTH, Size.HEIGHT);
-
-
-
+        mCamera.setToOrtho(false,
+                Constants.Size.WIDTH,
+                Constants.Size.HEIGHT);
     }
 
     @Override
@@ -43,13 +37,14 @@ public class FirstScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         mCamera.update();
+        mGame.getBatch().setProjectionMatrix(mCamera.combined);
 
-        mGame.mBatch.setProjectionMatrix(mCamera.combined);
-
-        mGame.mBatch.begin();
-        mGame.mFont.draw(mGame.mBatch, "Collect all fruits!", Size.WIDTH/2 - 50, Size.HEIGHT/2 + 25);
-        mGame.mFont.draw(mGame.mBatch, "Tap to start.", Size.WIDTH/2 - 50, Size.HEIGHT/2 - 25);
-        mGame.mBatch.end();
+        mGame.getBatch().begin();
+        mGame.getFont().draw(mGame.getBatch(), "Collect all fruits!",
+                Constants.Size.WIDTH/2, Constants.Size.HEIGHT/2 + Constants.Size.SMALL_OBJECT);
+        mGame.getFont().draw(mGame.getBatch(), "Tap to start.",
+                Constants.Size.WIDTH/2, Constants.Size.HEIGHT/2 - Constants.Size.SMALL_OBJECT);
+        mGame.getBatch().end();
 
         if (Gdx.input.isTouched()){
             mGame.setScreen(new GameScreen(mGame));
